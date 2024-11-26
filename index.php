@@ -1,13 +1,12 @@
 <?php
 
-require_once "ValueObject.php";
 
-try {
-    $color1 = new ValueObject(255,255,255);
+require_once 'Trait1.php';
+require_once 'Trait2.php';
+require_once 'Trait3.php';
+require_once 'Test.php';
 
-//    $color2 = new ValueObject(300,50,50);
+$obj = new Test();
 
-//    $color3 = new ValueObject(-1,400,70);
-} catch (InvalidArgumentException $e) {
-    echo $e->getMessage() . PHP_EOL;
-}
+echo "Сума результатів методів з трейтов: " . $obj->getSum();
+
