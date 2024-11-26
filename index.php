@@ -1,12 +1,20 @@
 <?php
 
+require_once 'Classes/MethodNotFoundException.php';
+require_once 'Classes/User.php';
 
-require_once 'Trait1.php';
-require_once 'Trait2.php';
-require_once 'Trait3.php';
-require_once 'Test.php';
+use Classes\User;
+use Classes\MethodNotFoundException;
 
-$obj = new Test();
+try {
+    $user = new User();
+    $user->setName('John');
+    $user->setAge(25);
+    $user->setEmail('john@example.com');
 
-echo "Сума результатів методів з трейтов: " . $obj->getSum();
+    print_r($user->getAll());
 
+    $user->setPhone('123456789');
+} catch (MethodNotFoundException $e) {
+    echo $e->customErrorMessage();
+}
