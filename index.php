@@ -1,15 +1,18 @@
 <?php
+require_once "vendor/autoload.php";
 
-require_once 'autoloader.php';
+$dsn = "mysql:host=mysql; dbname=php_10_24_db; port=3306";
+$user = "root";
+$password = "secret";
+$opts = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+];
 
 try {
-    $user = new User('John Doe', 'john.doe@example.com');
-    echo $user->greet();
 
-    echo "<br>";
-
-    $product = new Product('Laptop', 999.99);
-    echo $product->displayProduct();
-} catch (Exception $e) {
-    echo "Error: " . $e->getMessage();
+    $pdo = new PDO($dsn, $user, $password, $opts);
+}  catch (PDOException $exception) {
+    dd($exception);
 }
+
